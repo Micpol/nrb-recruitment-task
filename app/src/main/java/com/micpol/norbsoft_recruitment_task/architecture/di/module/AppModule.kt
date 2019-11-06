@@ -2,14 +2,39 @@ package com.micpol.norbsoft_recruitment_task.architecture.di.module
 
 import android.app.Application
 import android.content.Context
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
+import com.micpol.norbsoft_recruitment_task.data.source.DataSource
+import com.micpol.norbsoft_recruitment_task.data.source.NetworkDataSource
 import dagger.Binds
 import dagger.Module
+import dagger.Provides
+import javax.inject.Singleton
 
-@Module
-
+@Module(
+    includes = [
+        AppModule.Binders::class,
+        AppModule.Providers::class
+    ]
+)
 abstract class AppModule {
 
-    @Binds
-    abstract fun bindContext(application: Application): Context
+    @Module
+    abstract class Binders {
 
+        @Binds
+        abstract fun bindContext(application: Application): Context
+
+        @Binds
+        @Singleton
+        abstract fun bindNetworkDataSource(networkDataSource: NetworkDataSource): DataSource
+    }
+
+    @Module
+    class Providers {
+
+        @Provides
+        @Singleton
+        fun provideGson(): Gson = GsonBuilder().create()
+    }
 }
