@@ -27,6 +27,8 @@ android {
 
 ext {
     dagger = '2.25.2'
+    navigation = '2.1.0'
+    lifecycle = "2.2.0-rc01"
 }
 
 dependencies {
@@ -43,8 +45,15 @@ dependencies {
     kapt "com.google.dagger:dagger-compiler:$dagger"
 
     // Navigation
-    implementation "androidx.navigation:navigation-fragment-ktx:2.1.0"
-    implementation "androidx.navigation:navigation-ui-ktx:2.1.0"
+    implementation "androidx.navigation:navigation-fragment-ktx:$navigation"
+    implementation "androidx.navigation:navigation-ui-ktx:$navigation"
+
+    // LifeCycle
+
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle"
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'

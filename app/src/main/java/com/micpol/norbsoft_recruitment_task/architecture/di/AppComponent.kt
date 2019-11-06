@@ -4,6 +4,7 @@ import android.app.Application
 import com.micpol.norbsoft_recruitment_task.NorbsoftRTApplication
 import com.micpol.norbsoft_recruitment_task.architecture.di.contribute.ActivityContributeModule
 import com.micpol.norbsoft_recruitment_task.architecture.di.module.AppModule
+import com.micpol.norbsoft_recruitment_task.architecture.di.viewModel.ViewModelModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector
@@ -15,7 +16,8 @@ import javax.inject.Singleton
     modules = [
         AndroidSupportInjectionModule::class,
         AppModule::class,
-        ActivityContributeModule::class
+        ActivityContributeModule::class,
+        ViewModelModule::class
     ]
 )
 interface AppComponent : AndroidInjector<NorbsoftRTApplication> {
