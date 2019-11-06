@@ -9,7 +9,6 @@ import javax.inject.Inject
 abstract class HomeVM : ViewModel() {
     abstract val channels: LiveData<List<Channel>>
 
-    abstract fun loadChannels()
 }
 
 class HomeVMImpl @Inject constructor(
@@ -20,8 +19,11 @@ class HomeVMImpl @Inject constructor(
 
     private val channelsData by lazy { MutableLiveData<Resource<List<Channel>>>() }
 
+    init {
+        loadChannels()
+    }
 
-    override fun loadChannels() {
+    private fun loadChannels() {
         channelsData.postValue(Resource.Loading)
         viewModelScope.launch {
             channelsData.postValue(repository.loadChannels())
@@ -37,5 +39,4 @@ class HomeVMImpl @Inject constructor(
             }
         }
     }
-
 }
